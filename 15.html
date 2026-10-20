@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>中国食品安全15年深度报告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#faf6ef;
+    --paper-2:#f2ecdf;
+    --ink:#1c1915;
+    --ink-2:#4a443b;
+    --ink-3:#7d7568;
+    --line:#ddd3bf;
+    --red:#b3271e;
+    --red-soft:#f7e3df;
+    --amber:#9a6a12;
+    --amber-soft:#f6ecd4;
+    --green:#2e6b3e;
+    --green-soft:#e2eee4;
+    --card:#fffdf8;
+    --shadow:0 1px 2px rgba(28,25,21,.06),0 8px 24px rgba(28,25,21,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#16130f;
+      --paper-2:#1e1a15;
+      --ink:#ece4d4;
+      --ink-2:#c3b9a6;
+      --ink-3:#948a78;
+      --line:#3a342a;
+      --red:#e0574c;
+      --red-soft:#3a201c;
+      --amber:#d9a83e;
+      --amber-soft:#332a16;
+      --green:#7cb98c;
+      --green-soft:#1d2c20;
+      --card:#1e1a15;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Noto Sans SC",system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:16px;line-height:1.75;
+  }
+  .serif{font-family:"Noto Serif SC",serif}
+  a{color:var(--red);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--red) 35%,transparent)}
+  a:hover{border-bottom-color:var(--red)}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+
+  /* ---------- hero ---------- */
+  header.hero{
+    border-bottom:3px double var(--ink);
+    padding:52px 0 36px;
+  }
+  .hero .rule-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-size:13px;color:var(--ink-3);letter-spacing:.08em;border-bottom:1px solid var(--line);
+    padding-bottom:10px;margin-bottom:30px}
+  h1{
+    font-family:"Noto Serif SC",serif;font-weight:900;
+    font-size:clamp(34px,6vw,58px);line-height:1.2;margin:0 0 14px;letter-spacing:.01em;
+  }
+  h1 .accent{color:var(--red)}
+  .lede{font-size:clamp(16px,2.4vw,19px);color:var(--ink-2);max-width:46em;margin:0 0 26px}
+  .stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);background:var(--card)}
+  .stat{padding:16px 18px;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:none}
+  .stat b{display:block;font-family:"Noto Serif SC",serif;font-size:clamp(22px,3.4vw,32px);font-weight:900;line-height:1.15}
+  .stat b em{font-style:normal;color:var(--red)}
+  .stat span{font-size:12.5px;color:var(--ink-3);line-height:1.5;display:block;margin-top:4px}
+  @media (max-width:680px){.stat-strip{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:none}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}}
+
+  /* ---------- nav ---------- */
+  nav.toc{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 92%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.toc .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-top:0;padding-bottom:0}
+  nav.toc .wrap::-webkit-scrollbar{display:none}
+  nav.toc a{flex:0 0 auto;color:var(--ink-2);border:none;font-size:14px;font-weight:500;padding:12px 12px}
+  nav.toc a:hover{color:var(--red)}
+
+  /* ---------- sections ---------- */
+  section{padding:56px 0 8px}
+  .sec-head{display:flex;align-items:baseline;gap:16px;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:26px}
+  .sec-head .no{font-family:"Noto Serif SC",serif;font-weight:900;color:var(--red);font-size:20px}
+  .sec-head h2{font-family:"Noto Serif SC",serif;font-weight:900;font-size:clamp(24px,4vw,34px);margin:0;line-height:1.3}
+  .sec-head p{margin:0 0 2px auto;font-size:13.5px;color:var(--ink-3);text-align:right;max-width:22em}
+  @media (max-width:680px){.sec-head{flex-wrap:wrap}.sec-head p{text-align:left;margin:0}}
+  .prose{max-width:47em}
+  .prose p{margin:0 0 14px;color:var(--ink-2)}
+  .prose p strong,.prose li strong{color:var(--ink)}
+
+  blockquote.pull{
+    margin:28px 0;padding:22px 26px;background:var(--red-soft);border-left:4px solid var(--red);
+    font-family:"Noto Serif SC",serif;font-size:clamp(18px,2.8vw,23px);font-weight:700;line-height:1.6;
+  }
+  blockquote.pull cite{display:block;margin-top:10px;font-family:"Noto Sans SC",sans-serif;font-size:13.5px;font-weight:400;color:var(--ink-2)}
+
+  /* ---------- 315 timeline ---------- */
+  .year-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+  .year-btn{
+    font-family:"Noto Serif SC",serif;font-weight:700;font-size:16px;
+    padding:8px 14px;border:1px solid var(--line);background:var(--card);color:var(--ink-2);
+    cursor:pointer;border-radius:3px;transition:all .15s;
+  }
+  .year-btn:hover{border-color:var(--red);color:var(--red)}
+  .year-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+  .year-btn.none{opacity:.55}
+  .year-btn .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red);margin-left:6px;vertical-align:2px}
+  .year-btn.active .dot{background:#fff}
+  .year-btn.none .dot{background:var(--ink-3)}
+  .year-panel{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:28px 30px;min-height:280px}
+  @media (max-width:680px){.year-panel{padding:20px}}
+  .year-panel .yp-year{font-family:"Noto Serif SC",serif;font-weight:900;font-size:15px;color:var(--red);letter-spacing:.15em}
+  .year-panel h3{font-family:"Noto Serif SC",serif;font-weight:900;font-size:clamp(22px,3.6vw,30px);margin:6px 0 4px;line-height:1.35}
+  .year-panel .yp-target{color:var(--ink-3);font-size:14px;margin-bottom:16px}
+  .yp-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media (max-width:680px){.yp-cols{grid-template-columns:1fr}}
+  .yp-cols h4{margin:0 0 6px;font-size:13px;letter-spacing:.12em;color:var(--ink-3);font-weight:700}
+  .yp-cols p{margin:0;color:var(--ink-2);font-size:15px}
+  .gap-note{margin-top:16px;padding:10px 14px;background:var(--amber-soft);color:var(--amber);font-size:13.5px;border-radius:3px}
+  .src-line{margin-top:18px;padding-top:12px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--ink-3)}
+  .src-line a{font-size:12.5px}
+
+  /* ---------- event cards ---------- */
+  .event{border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow);margin-bottom:22px}
+  .event-head{padding:22px 26px 0;display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+  .event-head .yr{font-family:"Noto Serif SC",serif;font-weight:900;font-size:30px;color:var(--red);line-height:1}
+  .event-head h3{font-family:"Noto Serif SC",serif;font-weight:900;font-size:clamp(20px,3vw,25px);margin:0;line-height:1.35}
+  .event-head .sub{color:var(--ink-3);font-size:13.5px;margin-top:3px}
+  .event-body{padding:16px 26px 24px}
+  @media (max-width:680px){.event-head,.event-body{padding-left:18px;padding-right:18px}}
+  .tl{list-style:none;margin:0 0 18px;padding:0 0 0 18px;border-left:2px solid var(--line)}
+  .tl li{position:relative;padding:0 0 8px 14px;font-size:14.5px;color:var(--ink-2)}
+  .tl li::before{content:"";position:absolute;left:-24px;top:9px;width:8px;height:8px;border-radius:50%;background:var(--paper);border:2px solid var(--red)}
+  .tl li b{color:var(--ink);font-weight:700}
+  .fact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line)}
+  @media (max-width:680px){.fact-grid{grid-template-columns:1fr}}
+  .fact-cell{padding:14px 18px;border-bottom:1px solid var(--line)}
+  .fact-cell:nth-child(odd){border-right:1px solid var(--line)}
+  @media (max-width:680px){.fact-cell:nth-child(odd){border-right:none}}
+  .fact-cell h5{margin:0 0 5px;font-size:12.5px;letter-spacing:.12em;color:var(--red);font-weight:700}
+  .fact-cell p{margin:0;font-size:14.5px;color:var(--ink-2)}
+  .big-num{font-family:"Noto Serif SC",serif;font-weight:900;font-size:26px;color:var(--ink)}
+  .conflict{margin-top:14px;padding:10px 14px;background:var(--amber-soft);color:var(--amber);font-size:13.5px;border-radius:3px}
+
+  /* ---------- roots ---------- */
+  .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+  .filter-btn{padding:7px 16px;border:1px solid var(--line);background:var(--card);color:var(--ink-2);
+    font-size:14px;font-weight:500;cursor:pointer;border-radius:999px}
+  .filter-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .root-item{border:1px solid var(--line);background:var(--card);padding:20px 24px;margin-bottom:14px}
+  .root-item h3{font-family:"Noto Serif SC",serif;font-weight:700;font-size:19px;margin:0 0 8px;line-height:1.45}
+  .root-item p{margin:0;color:var(--ink-2);font-size:15px}
+  .root-item .who{margin-top:8px;font-size:13px;color:var(--ink-3)}
+  .tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.06em;padding:2px 9px;border-radius:3px;vertical-align:2px;margin-right:10px}
+  .tag.fact{background:var(--green-soft);color:var(--green)}
+  .tag.view{background:var(--amber-soft);color:var(--amber)}
+  .root-item.hidden{display:none}
+
+  /* ---------- charts ---------- */
+  .chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:24px 0}
+  @media (max-width:760px){.chart-grid{grid-template-columns:1fr}}
+  .chart-box{border:1px solid var(--line);background:var(--card);padding:22px 24px;box-shadow:var(--shadow)}
+  .chart-box h3{font-family:"Noto Serif SC",serif;font-weight:700;font-size:18px;margin:0 0 4px}
+  .chart-box .cap{font-size:13px;color:var(--ink-3);margin:0 0 16px}
+  .bar-row{display:grid;grid-template-columns:9.5em 1fr 4.2em;align-items:center;gap:12px;margin-bottom:12px;font-size:13.5px}
+  .bar-row .lab{color:var(--ink-2);line-height:1.4}
+  .bar-track{height:20px;background:var(--paper-2);position:relative}
+  .bar-fill{height:100%;background:var(--red)}
+  .bar-fill.green{background:var(--green)}
+  .bar-row .val{font-family:"Noto Serif SC",serif;font-weight:700;text-align:right}
+  @media (max-width:480px){.bar-row{grid-template-columns:7.5em 1fr 3.6em;font-size:12.5px}}
+
+  .law-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+  @media (max-width:680px){.law-list{grid-template-columns:1fr}}
+  .law-item{border:1px solid var(--line);background:var(--card);padding:18px 20px}
+  .law-item h4{margin:0 0 6px;font-family:"Noto Serif SC",serif;font-size:16.5px;font-weight:700}
+  .law-item p{margin:0;font-size:14px;color:var(--ink-2)}
+
+  /* ---------- gaps & sources ---------- */
+  .gap-list{list-style:none;margin:0;padding:0;counter-reset:gap}
+  .gap-list li{counter-increment:gap;padding:13px 0 13px 44px;position:relative;border-bottom:1px solid var(--line);color:var(--ink-2);font-size:15px}
+  .gap-list li::before{content:counter(gap,decimal-leading-zero);position:absolute;left:0;top:14px;
+    font-family:"Noto Serif SC",serif;font-weight:900;color:var(--amber);font-size:15px}
+  .src-list{list-style:none;margin:0;padding:0;font-size:13.5px}
+  .src-list li{padding:9px 0;border-bottom:1px solid var(--line);display:flex;gap:12px;flex-wrap:wrap;align-items:baseline}
+  .src-list .sname{font-weight:700;color:var(--ink);flex:0 0 auto}
+  .src-list .suse{color:var(--ink-3)}
+  .src-list a{word-break:break-all}
+
+  footer{margin-top:64px;border-top:3px double var(--ink);padding:26px 0 44px;color:var(--ink-3);font-size:13.5px}
+  footer p{margin:0 0 8px;max-width:52em}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="rule-top">
+      <span>深度调查 · 专题报告</span>
+      <span>调研完成于 2026 年 10 月 19 日</span>
+      <span>时间范围 2011 – 2026</span>
+    </div>
+    <h1>中国食品安全<span class="accent">15 年</span>深度报告</h1>
+    <p class="lede">从 2011 年双汇「瘦肉精」到 2026 年双氧水漂白鸡爪，央视 3·15 晚会年年曝光，重大事件从未断档。这份报告逐年复盘 16 届 3·15 的食品类曝光、深挖六起标志性事件的来龙去脉（未查到的处罚结果在卡片内明确标注），并把「为什么屡禁不止」的答案拆到根源——违法成本、标准缺口、监管盲区与信息不对称。事实与观点分开标注，查不到的明确写「未查到」。</p>
+    <div class="stat-strip">
+      <div class="stat"><b>16 <em>届</em></b><span>2011–2026 年 3·15 晚会逐年复盘：已确认 13 年有食品类曝光，2020 年未查到可靠来源</span></div>
+      <div class="stat"><b>37.5 <em>倍</em></b><span>2025 年抽检中双汇猪肉林可霉素超标倍数（7700μg/kg，国标 200）</span></div>
+      <div class="stat"><b>1.29 <em>亿元</em></b><span>2026 年双汇兽药残留案总罚没，董事长个人被罚 3764.62 万元</span></div>
+      <div class="stat"><b>97.26<em>%</em></b><span>2025 年全国食品安全抽检合格率（570.26 万批次，市场监管总局）</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#gala">一 · 3·15 十五年</a>
+    <a href="#events">二 · 六大事件深挖</a>
+    <a href="#roots">三 · 根源分析</a>
+    <a href="#now">四 · 监管现状 2024–2026</a>
+    <a href="#gaps">五 · 数据缺口</a>
+    <a href="#sources">六 · 来源</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ================= 一、315 ================= -->
+  <section id="gala">
+    <div class="sec-head">
+      <span class="no">壹</span>
+      <h2>3·15 晚会十五年：年年曝光，年年新案</h2>
+      <p>点击年份查看当年曝光的企业、问题与后续处理</p>
+    </div>
+    <div class="prose">
+      <p>2011 年到 2026 年的 16 届 3·15 晚会，已确认 13 年有食品类曝光；2013、2015 两年确认没有纯食品类案例；2020 年晚会因疫情延期至 7 月，当年食品类案例本轮调研未查到可靠来源，状态未明。这 13 年里，瘦肉精出现过两次（2011 年猪、2021 年羊），造假手法从掺兑、篡改保质期，一路演变到香精勾兑、药水浸泡、双氧水漂白。有一个细节值得先记住——2022 年土坑酸菜案中，涉事企业经理在镜头前说出了行业的心里话：</p>
+    </div>
+    <blockquote class="pull">
+      「国内的产品里面有点杂质，罚一千两千，国外可能罚 10 万。」
+      <cite>——湖南华容插旗菜业彭经理，2022 年央视 3·15 晚会播出画面（来源：天天看点/爱范儿转载报道）</cite>
+    </blockquote>
+    <div class="year-grid" id="yearGrid" role="tablist" aria-label="选择年份"></div>
+    <div class="year-panel" id="yearPanel" role="tabpanel"></div>
+  </section>
+
+  <!-- ================= 二、六大事件 ================= -->
+  <section id="events">
+    <div class="sec-head">
+      <span class="no">贰</span>
+      <h2>六大事件深挖</h2>
+      <p>时间线 · 造假细节 · 处罚结果 · 行业影响</p>
+    </div>
+
+    <article class="event">
+      <div class="event-head">
+        <span class="yr">2011→2026</span>
+        <div>
+          <h3>双汇：从「瘦肉精」到兽药超标 37.5 倍</h3>
+          <div class="sub">同一家企业，十五年两次栽在养殖环节用药上；第二次的罚单，第一次把董事长本人罚到肉痛</div>
+        </div>
+      </div>
+      <div class="event-body">
+        <ul class="tl">
+          <li><b>2011.3.15</b> — 央视《每周质量报告》315 特别节目《「健美猪」真相》曝光：河南孟州、沁阳、温县等地养殖户在饲料中添加违禁的「瘦肉精」（盐酸克伦特罗），有毒生猪流入济源双汇；双汇采购业务主管当场承认收购「加精」猪。</li>
+          <li><b>2011 年</b> — 双汇发展紧急停牌、两次致歉；济源双汇停产整顿，免去 4 名高管；河南官方处理 15 名责任人（开除公职 6 人、免职 4 人、停职检查 5 人），三县（市）畜牧局局长被问责；16 家猪场被查封，134 吨猪肉制品封存；双汇年报披露 5613 吨、价值 9300 万元产品无害化处理，并将 3 月 15 日定为「双汇食品安全日」，实行瘦肉精在线逐头检测。</li>
+          <li><b>2025.8</b> — 黑龙江省市场监管局抽检发现：望奎双汇北大荒猪后鞧肉林可霉素 7700μg/kg，国标限量 200μg/kg，<b>超标 37.5 倍</b>。</li>
+          <li><b>2026.5</b> — 事件经舆情首次曝光；<b>2026.10.9</b> 双汇公告处罚决定。</li>
+        </ul>
+        <div class="fact-grid">
+          <div class="fact-cell"><h5>问题细节</h5><p>林可霉素是养殖常用兽用抗生素。超标 37.5 倍意味着生猪「刚打完药没几天就送宰」，休药期形同虚设。核查还发现：工厂检验人员持证不足、设施不合规、宰前停食静养 12 小时未落实。</p></div>
+          <div class="fact-cell"><h5>监管处罚</h5><p>总罚没约 <span class="big-num">1.29 亿元</span>。董事长万宏伟个人被罚 3764.62 万元，总工程师王玉芬 658.62 万、副总裁乔海莉 646.94 万、总裁马相杰 566.10 万，四名高管合计 5636.28 万元；归母净利润减少 6380.66 万元。</p></div>
+          <div class="fact-cell"><h5>行业影响</h5><p>「处罚到人」的穿透式追责正式落地。新浪评论指出，涉事企业将被记入信用档案，面临「一处违法，处处受限」的跨部门惩戒。</p></div>
+          <div class="fact-cell"><h5>十五年回响</h5><p>2011 年瘦肉精案的处罚主要落在地方官员与工厂层面；2026 年这一案，罚单直接开到了董事长个人名下——这是两次事件之间最大的制度变化。</p></div>
+        </div>
+        <div class="conflict">口径冲突（未决）：涉案生猪数量，BT 财经称「5892 头」，纳闻称「910 头、货值 160 多万」，两处来源不一致，本报告并列呈现，不取其一。</div>
+        <p class="src-line">来源：<a href="https://www.huxiu.com/article/4897029.html">虎嗅</a> · <a href="https://businesstimescn.com/articles/628908.html">BT 财经</a> · <a href="https://nwen.net/news/1429791.html">纳闻</a> · <a href="https://k.sina.cn/article_5953466437_162dab0450670bewr4.html?from=news">新浪</a></p>
+      </div>
+    </article>
+
+    <article class="event">
+      <div class="event-head">
+        <span class="yr">2012</span>
+        <div>
+          <h3>毒胶囊：皮革下脚料做成药用胶囊</h3>
+          <div class="sub">工业明胶冒充药用明胶，铬严重超标；涉案厂长纵火烧厂毁灭证据</div>
+        </div>
+      </div>
+      <div class="event-body">
+        <ul class="tl">
+          <li><b>2012.4</b> — 央视曝光河北、浙江新昌等地企业用工业明胶生产药用胶囊；食药监局责令 13 种药品（涉及 9 家药企）暂停销售使用。</li>
+          <li><b>2012 年</b> — 公安部刑拘 53 人、关闭 10 家工厂；新昌县 43 家胶囊企业被查。河北薛洋明胶厂经理宋训杰纵火烧厂，企图毁灭证据。</li>
+          <li><b>2014 年</b> — 浙江宁海潘博海团伙案再曝：生产 9000 万粒铬超标胶囊，现场缴获 44 万粒成品、700 多公斤工业明胶原料。</li>
+        </ul>
+        <div class="fact-grid">
+          <div class="fact-cell"><h5>造假手法</h5><p>工业明胶以皮革下脚料为原料，铬含量严重超标，成本远低于药用明胶，被直接灌装成空心胶囊卖给药企。</p></div>
+          <div class="fact-cell"><h5>监管处罚</h5><p>刑拘 53 人，关闭 10 家工厂，涉案药品停售停用。具体判刑与罚金金额未查到。</p></div>
+          <div class="fact-cell"><h5>行业影响</h5><p>胶囊行业经历大整顿，药用明胶监管全面收紧；但 2014 年仍有 9000 万粒规模的团伙案出现，说明地下产能并未一次清零。</p></div>
+          <div class="fact-cell"><h5>备注</h5><p>民间流传的「皮鞋果冻」说法中，「工业明胶源于皮革下脚料」有来源支撑；「皮鞋」这一具体表述的原始出处，本轮调研未单独核实。</p></div>
+        </div>
+        <p class="src-line">来源：<a href="https://m.fx361.com/news/2012/0101/29629973.html">参考网</a> · <a href="https://www.claimsjournal.com/news/international/2012/04/20/205349.htm">Claims Journal</a> · <a href="https://www.foodnavigator.com/Article/2014/09/04/11-arrested-for-distributing-90m-toxic-metal-laced-capsules/">Food Navigator</a></p>
+      </div>
+    </article>
+
+    <article class="event">
+      <div class="event-head">
+        <span class="yr">2013</span>
+        <div>
+          <h3>镉大米：污染在土壤里，数据成了「国家秘密」</h3>
+          <div class="sub">广州抽检大米近半数镉超标；而土壤污染数据，环保部门拒绝公开</div>
+        </div>
+      </div>
+      <div class="event-body">
+        <ul class="tl">
+          <li><b>2013.5.16</b> — 广州食药监公布 18 个大米样品，8 个镉超标，多来自湖南；另有 2 批次米粉（东莞道滘工厂）超标，2 家餐厅、2 所大学食堂的大米同样超标。</li>
+          <li><b>2013 年</b> — 湖南攸县米厂停业、产品召回；国土资源部宣布开展全国土壤污染调查。</li>
+        </ul>
+        <div class="fact-grid">
+          <div class="fact-cell"><h5>问题细节</h5><p>美联社报道，广州当年大米及米制品镉超标比例达 44.4%。南京农业大学 2011 年研究称全国约 10% 大米镉超标。中国农业大学专家范志红指出，镉来自被采矿和化工废弃物污染的土壤——这不是加工环节造假，而是产地环境污染随粮食进入餐桌。</p></div>
+          <div class="fact-cell"><h5>信息公开</h5><p>事件中，环保部门以「国家秘密」为由拒绝公开土壤污染数据。消费者知道大米有毒，却无从知道哪块地有毒。</p></div>
+          <div class="fact-cell"><h5>监管处罚</h5><p>攸县米厂停业、产品召回。具体罚金未查到。</p></div>
+          <div class="fact-cell"><h5>行业影响</h5><p>湖南占全国大米产量 11–15%，事发后当地大米销量跌至此前一半；土壤重金属污染自此进入公众视野。</p></div>
+        </div>
+        <p class="src-line">来源：<a href="https://www.manufacturing.net/operations/news/13091379/chinese-rice-contaminated-with-cadmium">Manufacturing.net（美联社）</a> · <a href="https://www.healthcareasia.org/2013/tainted-rice-scandal-hits-guangzhou-eateries/">Healthcare Asia</a> · <a href="https://globalvoices.org/2013/05/22/cadmium-laced-rice-found-in-china/amp/">Global Voices</a></p>
+      </div>
+    </article>
+
+    <article class="event">
+      <div class="event-head">
+        <span class="yr">2014</span>
+        <div>
+          <h3>上海福喜：过期肉优先供应中国市场</h3>
+          <div class="sub">麦当劳、肯德基的供应商把过期七个月的肉绞碎重炸；内部举报人事先举报过，却败诉了</div>
+        </div>
+      </div>
+      <div class="event-body">
+        <ul class="tl">
+          <li><b>2014.1</b> — 曾有员工内部举报「被强迫篡改生产日期」，但法院驳回其诉求，福喜胜诉。</li>
+          <li><b>2014.7.20</b> — 上海电视台、东方卫视卧底曝光；当晚工厂被查封，5–6 名高管被刑拘。</li>
+          <li><b>2015.9.30</b> — 案件起诉；<b>2016.2.1</b> 一审宣判；<b>2016.7.1</b> 二审维持原判；<b>2016.10.3</b> 行政处罚公布。</li>
+        </ul>
+        <div class="fact-grid">
+          <div class="fact-cell"><h5>造假细节</h5><p>麦乐鸡原料解冻间当日 18 吨原料混入大量过期鸡皮、鸡胸肉，绞碎后裹三层浆粉高温油炸；「迷你小牛排」过期 7 个多月，「肉都臭了」仍被使用；2014 年 6 月 10 日主管邮件明确要求「物料延长保质期至本周末」；客户检查前一日，质量部发邮件通知「不能有次品」；生产数据自行篡改；过期原料优先供应中国市场。质量部经理称系高层直接授意。</p></div>
+          <div class="fact-cell"><h5>监管处罚</h5><p>10 名被告人犯生产、销售伪劣产品罪，判刑 1 年 7 个月至 3 年；两家公司各罚金 120 万元；澳大利亚籍高管杨立群判 3 年、罚金 10 万元并驱逐出境，4 人获缓刑。上海福喜与欧喜投资（中国）合计被罚 2428.5 万元，吊销并注销食品生产许可证，列入上海食品严重违法失信黑名单。</p></div>
+          <div class="fact-cell"><h5>行业影响</h5><p>波及麦当劳、肯德基、必胜客、汉堡王、星巴克、7-11、吉野家、宜家、赛百味、全家等品牌；日本麦当劳 2014 年 7 月销量同比 −17.4%、8 月 −25.1%，为上市以来最大降幅；340 名员工被解雇。</p></div>
+          <div class="fact-cell"><h5>制度警示</h5><p>曝光前半年，内部举报人走法律途径举报篡改日期，反而败诉。吹哨人保护缺位，是这起事件里最值得记住的一笔。</p></div>
+        </div>
+        <p class="src-line">来源：<a href="https://zh.wikipedia.org/wiki/%E7%A6%8F%E5%96%9C%E4%BA%8B%E4%BB%B6">维基百科·福喜事件</a> · <a href="http://en.chinagate.cn/2016-02/01/content_37712192.htm">中国日报网</a> · <a href="https://www.foodnavigator.com/Article/2016/10/03/Company-in-expired-meat-sting-ordered-to-pay-RMB24m-in-fines/">Food Navigator</a></p>
+      </div>
+    </article>
+
+    <article class="event">
+      <div class="event-head">
+        <span class="yr">2015</span>
+        <div>
+          <h3>「僵尸肉」：冷冻三四十年的走私冻品</h3>
+          <div class="sub">「70 后」猪蹄、「80 后」鸡翅，化学药剂加工后流入宵夜摊、超市和生鲜电商</div>
+        </div>
+      </div>
+      <div class="event-body">
+        <ul class="tl">
+          <li><b>2015.6.1</b> — 长沙海关破获特大走私冻品案，打掉黎某、钟某为首的 2 个团伙，查扣冻牛肉、冻鸭脖、冻鸡爪约 800 吨，价值约 1000 万元，20 人被抓。</li>
+          <li><b>2015.6</b> — 海关总署在 14 个省份统一行动，全国共打掉 21 个团伙，查获冻品 10 万余吨，货值超 30 亿元。</li>
+        </ul>
+        <div class="fact-grid">
+          <div class="fact-cell"><h5>问题细节</h5><p>部分冻品肉龄三四十年，有的来自疫区、严重过期，经化学药剂加工调味后，流入宵夜摊、餐厅、大排档、正规超市乃至生鲜电商。长沙红星冷库年吞吐 80 万吨冻品，约 1/3 来源不明；走私鸡爪经漂白浸泡后变得白嫩——十年后的 2026 年 3·15，双氧水漂白鸡爪仍在曝光名单上。</p></div>
+          <div class="fact-cell"><h5>监管处罚</h5><p>20 名嫌疑人被批捕。具体判刑结果未查到。</p></div>
+          <div class="fact-cell"><h5>行业影响</h5><p>冻品走私的完整链条首次被大规模曝光，冷链食品安全监管随后加强。</p></div>
+          <div class="fact-cell"><h5>链条特征</h5><p>走私冻品的成本优势来自绕开检验检疫与关税，正规冷库成为洗白通道——来源不明的货一旦入库，与合法冻品再无外观区别。</p></div>
+        </div>
+        <p class="src-line">来源：<a href="http://news.hndaily.cn/resfile/2015-06-27/010/hnrb20150627010.pdf">湖南日报</a> · <a href="http://eng.taiwan.cn/china_focus/201507/t20150702_10164743.htm">Taiwan.cn</a></p>
+      </div>
+    </article>
+
+    <article class="event">
+      <div class="event-head">
+        <span class="yr">2024</span>
+        <div>
+          <h3>淀粉肠「塌房」：没有国标，就没有违规</h3>
+          <div class="sub">鸡骨泥代替肉，批发价五毛一根；火腿肠有国标，淀粉肠至今没有专门国标</div>
+        </div>
+      </div>
+      <div class="event-body">
+        <ul class="tl">
+          <li><b>2024.3.15 当晚</b> — 「淀粉肠塌房」话题爆上热搜（据央广网报道）。</li>
+        </ul>
+        <div class="fact-grid">
+          <div class="fact-cell"><h5>问题细节</h5><p>淀粉肠配料表第一位写着肉，但「有肉，肉很少」：主料是鸡肉加鸡骨泥，「鸭肉更便宜，大部分都是淀粉」。批发市场 0.5–0.6 元/根，路边摊卖 2–3 元/根。电商平台上出售鸡骨泥的多是宠物食品商家，并注明「骨泥不建议人吃」。</p></div>
+          <div class="fact-cell"><h5>专家定性</h5><p>中国农业大学副教授何计国：「使用鸡脖泥、鸡架泥代替原有肉类，本质是掺假和以次充好。」</p></div>
+          <div class="fact-cell"><h5>制度漏洞</h5><p>火腿肠有国家标准，淀粉肠至今无专门国标——没有标准，执法就没有抓手，商家钻的正是这个空子。</p></div>
+          <div class="fact-cell"><h5>监管处罚</h5><p>未查到针对具体企业的处罚。事件的杀伤力主要落在行业信任上。</p></div>
+        </div>
+        <p class="src-line">来源：<a href="https://static.32xueyuan.com/zq//u/cms/zj/202403/271540026qqd.pdf">央广网报道转载（32 学苑）</a></p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= 三、根源 ================= -->
+  <section id="roots">
+    <div class="sec-head">
+      <span class="no">叁</span>
+      <h2>根源分析：为什么屡禁不止</h2>
+      <p>绿色为有来源支撑的查证事实，黄色为注明出处的引述观点</p>
+    </div>
+    <div class="filter-row">
+      <button class="filter-btn active" data-filter="all">全部</button>
+      <button class="filter-btn" data-filter="fact">查证事实</button>
+      <button class="filter-btn" data-filter="view">引述观点</button>
+    </div>
+    <div id="rootList">
+      <div class="root-item" data-kind="fact">
+        <h3><span class="tag fact">查证事实</span>违法成本低，是企业当着镜头说的心里话</h3>
+        <p>2022 年土坑酸菜案中，插旗菜业彭经理在央视镜头前直言：「国内的产品里面有点杂质，罚一千两千，国外可能罚 10 万。」出口产品用标准化腌制池，内销「老坛酸菜包」用土坑收购菜——同一家企业、两套标准，分野就在处罚力度。</p>
+        <p class="who">来源：央视 3·15 播出画面，经 <a href="https://www.laitimes.com/article/3gngu_3xci2.html">天天看点（爱范儿）</a> 转载</p>
+      </div>
+      <div class="root-item" data-kind="fact">
+        <h3><span class="tag fact">查证事实</span>标准缺失：没有国标，就没有「违规」</h3>
+        <p>淀粉肠至今没有专门国家标准（火腿肠有国标），鸡骨泥掺假因此长期处于执法灰区。2019 年的「土鸡蛋」同理：国家没有「土鸡蛋」标准，「鲜土」「好土」只是商标名，笼养鸡加斑蝥黄加深蛋黄就能冒充。</p>
+        <p class="who">来源：<a href="https://static.32xueyuan.com/zq//u/cms/zj/202403/271540026qqd.pdf">央广网报道转载</a> · <a href="https://news.mydrivers.com/blog/20190315.htm">驱动之家（2019 年 3·15）</a></p>
+      </div>
+      <div class="root-item" data-kind="fact">
+        <h3><span class="tag fact">查证事实</span>内部举报曾被证明无效</h3>
+        <p>上海福喜事发前半年（2014 年 1 月），已有员工举报「被强迫篡改生产日期」，法院驳回其诉求、福喜胜诉。半年后靠媒体卧底才掀开盖子。当吹哨的成本由吹哨人独自承担，内部监督就只剩摆设。</p>
+        <p class="who">来源：<a href="https://ja.wikipedia.org/wiki/%E4%B8%8A%E6%B5%B7%E7%A6%8F%E5%96%9C%E9%A3%9F%E5%93%81%E6%9C%9F%E9%99%90%E5%88%88%E3%82%8C%E9%A3%9F%E8%82%AF%E5%95%8F%E9%A1%8C">日文维基百科·上海福喜事件</a></p>
+      </div>
+      <div class="root-item" data-kind="fact">
+        <h3><span class="tag fact">查证事实</span>关键环境数据曾被列为「国家秘密」</h3>
+        <p>2013 年镉大米事件中，环保部门以「国家秘密」为由拒绝公开土壤污染数据。污染源头信息不透明，下游的抽检和处罚都只能是事后补救。</p>
+        <p class="who">来源：<a href="https://globalvoices.org/2013/05/22/cadmium-laced-rice-found-in-china/amp/">Global Voices</a></p>
+      </div>
+      <div class="root-item" data-kind="fact">
+        <h3><span class="tag fact">查证事实</span>兽药滥用有全国性数据支撑</h3>
+        <p>中科院广州地球化学研究所清单显示，2013 年中国抗生素使用量 16.2 万吨，其中 51% 为兽用。复旦大学课题组对 1000 多名儿童尿液监测证实，儿童普遍暴露于多种抗生素——兽用抗生素主要经污染水和食物进入人体。双汇 2026 年的林可霉素超标 37.5 倍，是这张大网上的一个点。</p>
+        <p class="who">来源：<a href="https://www.1mishu.com/haowen/224523.html">世纪秘书（论文转载）</a></p>
+      </div>
+      <div class="root-item" data-kind="fact">
+        <h3><span class="tag fact">查证事实</span>农村是监管力量最薄的一环</h3>
+        <p>学术论文指出，工商、食药监部门在农村的监管力量严重不足，难以形成强有力的监督。这与 3·15 的曝光分布互相印证：2018 年山寨饮品专攻三四线和农村市场，走私冻品、土坑酸菜、黑作坊也大多藏身于县乡供应链。</p>
+        <p class="who">来源：<a href="https://www.1mishu.com/haowen/224523.html">世纪秘书（论文转载）</a></p>
+      </div>
+      <div class="root-item" data-kind="view">
+        <h3><span class="tag view">引述观点</span>「违法成本太低」——罚单相对于营收只是零头</h3>
+        <p>「只要不出群体性的恶性事件，风头一过，消费者慢慢就忘了，生意照样做……食品安全老问题，从来都是违法成本太低……对年营收近 600 亿的企业来说，这点罚款真的能伤筋动骨吗？」评论同时点出行业通病：「重规模、轻品控……赚着品牌溢价的钱，却没承担起对应的质量责任，出了事就道歉、整改、罚钱，风头过了又一切照旧。」</p>
+        <p class="who">——纳闻网评论《碗里的肉又被「下药」了，这次超标足足 37.5 倍》（2026-10-13），<a href="https://nwen.net/news/1429791.html">原文</a></p>
+      </div>
+      <div class="root-item" data-kind="view">
+        <h3><span class="tag view">引述观点</span>地方保护：经济发展压力下「睁一只眼闭一只眼」</h3>
+        <p>人民日报引述知情人称，含镉食品是「慢性中毒」食品；在经济发展压力下，一些相关部门对违规食品企业睁一只眼闭一只眼——「他们不大可能被法律惩处，还能保住职位。」</p>
+        <p class="who">——人民日报，经 <a href="https://globalvoices.org/2013/05/22/cadmium-laced-rice-found-in-china/amp/">Global Voices</a> 转引（2013 年镉大米报道）</p>
+      </div>
+      <div class="root-item" data-kind="view">
+        <h3><span class="tag view">引述观点</span>结构性原因：人口多、链条长、发展阶段有限</h3>
+        <p>中国农业大学教授罗云波（2011 年）：「中国人口多、食品供应链长、从业人员多、经济发展水平有限，都提高了食品安全问题发生的概率。」他同时认为，严厉惩罚是解决问题的关键。</p>
+        <p class="who">——<a href="http://www.chinatoday.com.cn/ctenglish/se/txt/2011-09/16/content_390661_2.htm">China Today</a>（2011）</p>
+      </div>
+      <div class="root-item" data-kind="view">
+        <h3><span class="tag view">引述观点</span>商业模式本身：靠「信息不对称」赚钱</h3>
+        <p>财经博主评论 2026 年 3·15 时指出，真正的靶心是根除「信息不对称剥削」——把本应透明的食品安全信息，锁进消费者进不去的厨房、看不见的加工厂。消费者看不见的地方，就是造假利润的来源。</p>
+        <p class="who">——老虎证券财经博主，<a href="https://www.itiger.com/hans/news/1107350361">原文</a></p>
+      </div>
+      <div class="root-item" data-kind="view">
+        <h3><span class="tag view">引述观点</span>曝光的注意力，来得快去得也快</h3>
+        <p>「3·15 晚会曝光的企业后来都怎么样了？翻新卫生巾、泡药虾仁、土坑酸菜……有的被罚到注销，有的转战海外复活，有的换个马甲继续干。35 年了，晚会最大的价值可能不是打死谁，而是每年给全社会制造一次集中的注意力——但注意力来得快，去得也快。」</p>
+        <p class="who">——播客《三五环》主播刘飞，<a href="https://podtail.com/no/podcast/3011adec/no-32-315-openclaw/">节目页</a></p>
+      </div>
+      <div class="root-item" data-kind="view">
+        <h3><span class="tag view">引述观点</span>信任修复之难：要证明「每一批都稳定」</h3>
+        <p>中国企业资本联盟副理事长柏文喜指出，历史食安争议会放大消费者对品牌后续投诉的关注（「可得性偏差」）；信任修复最难的，是证明自己「每一批都稳定」，而不是「某一次没问题」。</p>
+        <p class="who">——经 <a href="https://www.growthhk.cn/cgo/model/171201.html">增长黑客</a> 转引</p>
+      </div>
+      <div class="root-item" data-kind="view">
+        <h3><span class="tag view">引述观点</span>贫富差距与小生产者：廉价食品的买家是最穷的人</h3>
+        <p>黑龙江大学硕士学位论文提出：贫富差距过大导致小生产者过多、生产廉价无保障食品；而廉价食品的消费群体恰恰是低收入家庭（三鹿奶粉案例）。价格战压到极限时，被压掉的先是安全冗余。</p>
+        <p class="who">——<a href="https://www.renrendoc.com/free-down/6135215101000045.pdf">人人文档（硕士论文）</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 四、现状 ================= -->
+  <section id="now">
+    <div class="sec-head">
+      <span class="no">肆</span>
+      <h2>监管现状 2024–2026：罚到人头上</h2>
+      <p>抽检数据 · 修法草案 · 司法案例</p>
+    </div>
+    <div class="prose">
+      <p>过去两年最实质的变化是追责方式：2026 年双汇案中，董事长个人被罚 3764.62 万元，四名高管合计被罚 5636.28 万元——罚单第一次穿透公司法人、落到具体责任人头上。同年 10 月公开征求意见的《食品安全法》修订草案，把「处罚到人」写进了制度设计。抽检端的数据则显示，不合格率仍在 2% 上下徘徊，问题集中在农药残留超标、食品添加剂滥用与微生物污染。</p>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-box">
+        <h3>食品安全抽检不合格率</h3>
+        <p class="cap">市场监管总局公布口径；不合格率越低越好</p>
+        <div class="bar-row"><span class="lab">2025 年（截至 11 月中旬，570.26 万批次）</span><div class="bar-track"><div class="bar-fill" style="width:91%"></div></div><span class="val">2.74%</span></div>
+        <div class="bar-row"><span class="lab">2026 年暑期（15.1 万批次）</span><div class="bar-track"><div class="bar-fill" style="width:89%"></div></div><span class="val">2.66%</span></div>
+        <div class="bar-row"><span class="lab">2026 年中秋国庆（13.1 万批次）</span><div class="bar-track"><div class="bar-fill" style="width:64%"></div></div><span class="val">1.93%</span></div>
+        <p class="cap" style="margin:14px 0 0">2025 年另完成风险监测 23.44 万批次，发现问题 1.02 万批次，发现率 4.36%。来源：<a href="https://finance.sina.cn/2025-11-25/detail-infyrrrs5445216.d.html">新浪财经（2025 发布会）</a> · <a href="https://finance.sina.cn/2026-09-11/detail-inirmrtw6914977.d.html">2026 暑期</a> · <a href="https://news.enorth.com.cn/system/2026/10/12/059860500.shtml">北方网（双节）</a></p>
+      </div>
+      <div class="chart-box">
+        <h3>双汇 2026 年案：个人罚单（万元）</h3>
+        <p class="cap">总罚没约 1.29 亿元；以下为四名高管的个人罚款</p>
+        <div class="bar-row"><span class="lab">万宏伟 · 董事长</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="val">3764.62</span></div>
+        <div class="bar-row"><span class="lab">王玉芬 · 总工程师</span><div class="bar-track"><div class="bar-fill" style="width:17.5%"></div></div><span class="val">658.62</span></div>
+        <div class="bar-row"><span class="lab">乔海莉 · 副总裁</span><div class="bar-track"><div class="bar-fill" style="width:17.2%"></div></div><span class="val">646.94</span></div>
+        <div class="bar-row"><span class="lab">马相杰 · 总裁</span><div class="bar-track"><div class="bar-fill" style="width:15%"></div></div><span class="val">566.10</span></div>
+        <p class="cap" style="margin:14px 0 0">来源：<a href="https://businesstimescn.com/articles/628908.html">BT 财经</a> · <a href="https://www.huxiu.com/article/4897029.html">虎嗅</a></p>
+      </div>
+    </div>
+
+    <h3 class="serif" style="font-size:21px;font-weight:900;margin:30px 0 4px">《食品安全法（修订草案征求意见稿）》五方面要点</h3>
+    <p class="prose" style="color:var(--ink-2);margin:0 0 6px">2026 年 10 月 10 日公开征求意见。市场监管总局食品协调司负责人答记者问的归纳：</p>
+    <div class="law-list">
+      <div class="law-item"><h4>压实主体责任</h4><p>企业配备食品安全总监、食品安全员；邮政快递实名收寄、验视、过机安检；规范委托生产。</p></div>
+      <div class="law-item"><h4>重点领域专节</h4><p>增设「学校食品安全」专节（校长/园长负责制、中小学幼儿园陪餐制度）；增设「网络食品经营」专节（分级备案；平台、直播间运营者、直播营销人员的主体责任；平台须在业务覆盖的省级区域设分支机构或办事处）；跨境电商企业承担进口食品安全主体责任；进出口食品添加剂、食品相关产品纳入海关监管。</p></div>
+      <div class="law-item"><h4>智慧监管</h4><p>关键风险环节安装监控设备，实时视频接入县级以上市场监管部门信息系统；赋予物联网监控、视频巡查等非现场检查权限。</p></div>
+      <div class="law-item"><h4>处罚到人</h4><p>严格落实「处罚到人」，对故意违法、性质恶劣、造成严重后果的责任人员实施处罚；按违法类型分类设定差异化处罚幅度，提高违法成本。</p></div>
+      <div class="law-item"><h4>信用管理</h4><p>实行食品安全信用管理制度，实施跨部门失信惩戒——与双汇案后「一处违法，处处受限」的信用惩戒格局相呼应。</p></div>
+    </div>
+    <p class="src-line">来源：<a href="https://finance.sina.cn/2026-10-12/detail-iniuxmtr7289827.d.html">新浪财经</a> · <a href="https://news.bjd.com.cn/2026/10/10/11990311.shtml">京报网</a></p>
+
+    <h3 class="serif" style="font-size:21px;font-weight:900;margin:32px 0 10px">司法与执法的其他新动向</h3>
+    <div class="prose">
+      <p><strong>两高网络食品安全犯罪典型案例（约 2026 年 9 月发布）。</strong>黄某祥假蜂蜜案：以果葡糖浆加香精勾兑冒充进口椴树蜜，日均 1200 单，销售额 206 万元，判有期徒刑 15 年、罚金 120 万元。吴某保等假驼奶粉案：销售额 40 万元，判 3 年 / 2 年 10 个月、罚金 20 万元。案例还包括直播销售非法添加布噻嗪的压片糖果、含西布曲明的减肥咖啡、伪造证件的「幽灵外卖」等。（来源：<a href="https://m.778526.com/articles/daily-38731ef3a1d8.html">778526 转载</a>）</p>
+      <p><strong>2026 年 3·15 后续处置。</strong>市场监管总局组织专案组突击执法，现场查封过氧化氢 27 桶、鸡爪制品 551 箱；对相关地方政府和市场监管部门约谈、挂牌督办，表态「问题不查清不放过，整改不到位不放过」。（来源：<a href="https://fsxa9cd9b.apostaorbihouse.com/travel-complaints/20261018/453397278.htm">21 世纪经济报道转载</a>）</p>
+      <p><strong>举报奖励常态化。</strong>阜阳市 2026 年 10 月 10 日再次公开征集肉制品及网络餐饮违法线索，举报奖励 500 元至 30 万元，并明确将「槽头肉冒充五花肉」「双氧水漂白泡发原料肉」列入举报范围——2024、2026 两届 3·15 的曝光病灶，被写进了地方日常执法清单。（来源：<a href="https://finance.sina.cn/2026-10-12/detail-iniuyhxi8462837.d.html">新浪财经</a>）</p>
+    </div>
+  </section>
+
+  <!-- ================= 五、缺口 ================= -->
+  <section id="gaps">
+    <div class="sec-head">
+      <span class="no">伍</span>
+      <h2>数据缺口：这些我们没查到</h2>
+      <p>查不到的写「未查到」，不猜、不编</p>
+    </div>
+    <ol class="gap-list">
+      <li>2020 年 3·15 晚会食品类具体案例：网传汉堡王、海参养殖等说法，本轮检索未找到可靠网页来源佐证——未查到。</li>
+      <li>2023 年泰国香米案（永良米业）后续处罚结果——未查到。</li>
+      <li>2024 年槽头肉梅菜扣肉涉事企业具体处罚结果——未查到（仅查到阜阳 2026 年持续整治与举报通告）。</li>
+      <li>2014 年杭州广琪、康诺邦等企业具体处罚金额——未查到。</li>
+      <li>2016–2019 年、2021 年、2025 年 3·15 曝光企业的具体罚单金额——未查到。</li>
+      <li>双汇 2026 年罚单涉案生猪数量口径冲突：BT 财经称「5892 头」，纳闻称「910 头、货值 160 多万」——需进一步核实。</li>
+      <li>2026 年 3·15 是否还有「预制菜冒充现炒」「冻海鲜裹冰衣」等食品案例：仅见于财经博主评论，主流曝光名单未证实——未查到。</li>
+      <li>2012 年「皮鞋果冻」表述的原始出处：工业明胶原料为皮革下脚料有来源支撑，但「皮鞋」这一具体说法的原始出处未单独核实。</li>
+    </ol>
+  </section>
+
+  <!-- ================= 六、来源 ================= -->
+  <section id="sources">
+    <div class="sec-head">
+      <span class="no">陆</span>
+      <h2>主要来源</h2>
+      <p>全部事实均可回溯至下列公开报道</p>
+    </div>
+    <ul class="src-list">
+      <li><span class="sname">维基百科 · 3·15 晚会</span><a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%A4%AE%E5%B9%BF%E6%92%AD%E7%94%B5%E8%A7%86%E6%80%BB%E5%8F%B03%C2%B715%E6%99%9A%E4%BC%9A">zh.wikipedia.org</a><span class="suse">历年主题与 2013 / 2014 / 2021 年曝光内容</span></li>
+      <li><span class="sname">虎嗅</span><a href="https://www.huxiu.com/article/4897029.html">huxiu.com</a><span class="suse">双汇瘦肉精 2011 全程与 2026 罚单</span></li>
+      <li><span class="sname">BT 财经</span><a href="https://businesstimescn.com/articles/628908.html">businesstimescn.com</a><span class="suse">双汇 2026 罚单细节（5892 头口径）</span></li>
+      <li><span class="sname">纳闻</span><a href="https://nwen.net/news/1429791.html">nwen.net</a><span class="suse">双汇罚单（910 头口径）与违法成本评论</span></li>
+      <li><span class="sname">新浪</span><a href="https://k.sina.cn/article_5953466437_162dab0450670bewr4.html?from=news">k.sina.cn</a><span class="suse">信用惩戒格局</span></li>
+      <li><span class="sname">财新网</span><a href="https://companies.caixin.com/2015-03-16/100791443.html">companies.caixin.com</a><span class="suse">2015 年 3·15 完整名单</span></li>
+      <li><span class="sname">高顿教育</span><a href="https://www.gaodun.com/news/958292.html">gaodun.com</a><span class="suse">2016 年饿了么与抽检发布</span></li>
+      <li><span class="sname">新浪财经</span><a href="https://finance.sina.cn/consume/bgt/2018-03-15/detail-ifyshfup9564948.d.html">finance.sina.cn</a><span class="suse">2018 年山寨饮品</span></li>
+      <li><span class="sname">驱动之家</span><a href="https://news.mydrivers.com/blog/20190315.htm">news.mydrivers.com</a><span class="suse">2019 年辣条与土鸡蛋</span></li>
+      <li><span class="sname">天天看点（爱范儿）</span><a href="https://www.laitimes.com/article/3gngu_3xci2.html">laitimes.com</a><span class="suse">2022 年土坑酸菜与变味粉条</span></li>
+      <li><span class="sname">增长黑客</span><a href="https://www.growthhk.cn/cgo/model/171201.html">growthhk.cn</a><span class="suse">土坑酸菜后续与柏文喜观点</span></li>
+      <li><span class="sname">扬子晚报</span><a href="http://doss.xhby.net/zpaper/yzwb/pc/att/202303/16/5a948449-ac7b-4fba-845e-2e9916b3fb83.pdf">doss.xhby.net（PDF）</a><span class="suse">2023 年泰国香米</span></li>
+      <li><span class="sname">The World of Chinese</span><a href="https://www.theworldofchinese.com/2024/03/shocking-scandals-revealed-at-chinas-consumer-rights-gala/">theworldofchinese.com</a><span class="suse">2024 年听花酒</span></li>
+      <li><span class="sname">The World of Chinese</span><a href="https://www.theworldofchinese.com/2025/03/mega-scandals-from-chinas-annual-consumer-rights-festival-in-2025/">theworldofchinese.com</a><span class="suse">2025 年泡药虾仁</span></li>
+      <li><span class="sname">东方财富</span><a href="https://fund.eastmoney.com/a/202603153672453950.html">fund.eastmoney.com</a><span class="suse">2026 年 3·15 曝光名单与漂白鸡爪</span></li>
+      <li><span class="sname">维基百科 · 福喜事件</span><a href="https://zh.wikipedia.org/wiki/%E7%A6%8F%E5%96%9C%E4%BA%8B%E4%BB%B6">zh.wikipedia.org</a><span class="suse">上海福喜 2014 全程</span></li>
+      <li><span class="sname">Food Navigator</span><a href="https://www.foodnavigator.com/Article/2016/10/03/Company-in-expired-meat-sting-ordered-to-pay-RMB24m-in-fines/">foodnavigator.com</a><span class="suse">福喜 2428.5 万元罚款</span></li>
+      <li><span class="sname">Manufacturing.net（美联社）</span><a href="https://www.manufacturing.net/operations/news/13091379/chinese-rice-contaminated-with-cadmium">manufacturing.net</a><span class="suse">2013 年镉大米</span></li>
+      <li><span class="sname">Global Voices</span><a href="https://globalvoices.org/2013/05/22/cadmium-laced-rice-found-in-china/amp/">globalvoices.org</a><span class="suse">镉大米、「国家秘密」与人民日报引述</span></li>
+      <li><span class="sname">湖南日报</span><a href="http://news.hndaily.cn/resfile/2015-06-27/010/hnrb20150627010.pdf">news.hndaily.cn（PDF）</a><span class="suse">2015 年僵尸肉</span></li>
+      <li><span class="sname">32 学苑（央广网转载）</span><a href="https://static.32xueyuan.com/zq//u/cms/zj/202403/271540026qqd.pdf">static.32xueyuan.com（PDF）</a><span class="suse">淀粉肠塌房与何计国观点</span></li>
+      <li><span class="sname">新浪财经</span><a href="https://finance.sina.cn/2025-11-25/detail-infyrrrs5445216.d.html">finance.sina.cn</a><span class="suse">2025 年抽检数据发布会</span></li>
+      <li><span class="sname">新浪财经</span><a href="https://finance.sina.cn/2026-10-12/detail-iniuxmtr7289827.d.html">finance.sina.cn</a><span class="suse">食品安全法修订草案</span></li>
+      <li><span class="sname">京报网</span><a href="https://news.bjd.com.cn/2026/10/10/11990311.shtml">news.bjd.com.cn</a><span class="suse">食品安全法修订草案</span></li>
+      <li><span class="sname">新浪财经</span><a href="https://finance.sina.cn/2026-10-12/detail-iniuyhxi8462837.d.html">finance.sina.cn</a><span class="suse">阜阳 2026 年举报奖励通告</span></li>
+      <li><span class="sname">China Today</span><a href="http://www.chinatoday.com.cn/ctenglish/se/txt/2011-09/16/content_390661_2.htm">chinatoday.com.cn</a><span class="suse">罗云波观点</span></li>
+      <li><span class="sname">老虎证券</span><a href="https://www.itiger.com/hans/news/1107350361">itiger.com</a><span class="suse">信息不对称剥削观点</span></li>
+      <li><span class="sname">播客《三五环》</span><a href="https://podtail.com/no/podcast/3011adec/no-32-315-openclaw/">podtail.com</a><span class="suse">刘飞观点</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p><strong>调研说明：</strong>本报告素材由深度调研于 2026 年 10 月 19 日完成，基于公开网页来源逐条核对；所有数字与事实均附来源，无法核实处标注「未查到」，口径冲突处并列呈现。文中评论性内容均以「引述观点」标明出处，不代表查证事实。</p>
+    <p>报告范围：2011 年 1 月至 2026 年 10 月 · 中国食品安全15年深度报告</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var DATA = {
+    "2011": {t:"双汇「瘦肉精」——「健美猪」真相", target:"河南孟州、沁阳、温县等地养猪场 · 济源双汇食品有限公司",
+      problem:"央视《每周质量报告》315 特别节目曝光：养殖户在饲料中添加违禁「瘦肉精」（盐酸克伦特罗，肾上腺类神经兴奋剂），有毒生猪流入济源双汇；双汇采购部业务主管承认收购「加精」猪。食用含瘦肉精猪肉可致肌肉振颤、心慌、头疼、恶心呕吐，对高血压、心脏病患者危害更大。",
+      outcome:"双汇发展紧急停牌、两次致歉；济源双汇停产整顿，免去 4 名高管；河南官方处理 15 名责任人，三县（市）畜牧局局长被问责；16 家猪场被查封，134 吨猪肉制品封存；双汇无害化处理 5613 吨、价值 9300 万元产品，将 3 月 15 日定为「双汇食品安全日」，实行瘦肉精在线逐头检测。",
+      src:[["虎嗅","https://www.huxiu.com/article/4897029.html"],["金点文库","https://www.jindyey.com/297706.html"]]},
+    "2012": {t:"麦当劳三里屯店、家乐福郑州店", target:"麦当劳北京三里屯餐厅 · 家乐福郑州店",
+      problem:"麦当劳三里屯店将变质芝士片用于制作早餐汉堡，将快到期甜品派更换包装、把到期时间向后延长 1 小时；家乐福郑州店篡改鸡肉保质期后继续销售。",
+      outcome:"麦当劳中国官方微博公开道歉，事发餐厅暂停营业整顿，全国餐厅统一自查；国家食药监总局要求北京市卫生局调查；两家企业均公开道歉。",
+      src:[["维基百科·麦当劳相关争议","https://zh.wikipedia.org/wiki/%E9%BA%A5%E7%95%B6%E5%8B%9E%E7%9B%B8%E9%97%9C%E7%88%AD%E8%AD%B0"],["Prepared Foods","https://www.preparedfoods.com/articles/111021-china-investigating-mcdonald-s-food-safety?v=preview"]]},
+    "2013": {t:"无典型食品安全类曝光", target:"当年曝光：苹果手机售后、黄金「内铱」、江淮同悦生锈、大众 DSG 变速箱、药品虚假宣传、非法弹窗广告等",
+      problem:"这一年 3·15 晚会没有纯食品类案例。",
+      outcome:"——", none:true,
+      src:[["维基百科·3·15 晚会","https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%A4%AE%E5%B9%BF%E6%92%AD%E7%94%B5%E8%A7%86%E6%80%BB%E5%8F%B03%C2%B715%E6%99%9A%E4%BC%9A"]]},
+    "2014": {t:"过期进口食品原料、「药品充食品」鱼肝油", target:"杭州广琪贸易有限公司 · 浙江康诺邦健康产品有限公司等",
+      problem:"杭州广琪销售过期进口食品原料；康诺邦等企业以药品充食品生产鱼肝油。",
+      outcome:"具体处罚金额未查到。", gap:true,
+      src:[["维基百科·3·15 晚会","https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%A4%AE%E5%B9%BF%E6%92%AD%E7%94%B5%E8%A7%86%E6%80%BB%E5%8F%B03%C2%B715%E6%99%9A%E4%BC%9A"]]},
+    "2015": {t:"无典型食品安全类曝光", target:"当年曝光：东风日产/上海大众/奔驰 4S 店「小病大修」、山东地炼调和汽油、路虎极光变速箱、进口服装黑榜、「来路不明的保健品」（保健品欺诈，非食品安全类）",
+      problem:"这一年 3·15 晚会没有纯食品类案例。",
+      outcome:"——", none:true,
+      src:[["财新网","https://companies.caixin.com/2015-03-16/100791443.html"]]},
+    "2016": {t:"饿了么黑心作坊", target:"「饿了么」订餐平台入驻商家 · 郑州市恒力源食品、重庆御味缘食品等（抽检发布）",
+      problem:"饿了么入驻商家虚构地址、上传虚假实体照片、无照经营黑作坊；食药监总局抽检发布：恒力源分装甜话梅、御味缘地瓜干等 6 批次违规使用食品添加剂，安徽忠俊食品九制话梅重金属超标等。",
+      outcome:"播出当晚，北京食药监局查处通州「饿了么」五店合一食品加工点。",
+      src:[["高顿教育","https://www.gaodun.com/news/958292.html"]]},
+    "2017": {t:"日本福岛核污染区食品流入", target:"无印良品（MUJI）等电商平台及门店",
+      problem:"被曝销售来自日本福岛核事故禁入区域的食品，违反中国对核污染区食品的进口禁令。",
+      outcome:"具体处罚金额未查到。", gap:true,
+      src:[["WhatsOnWeibo","http://www.whatsonweibo.com/look-whos-talking-chinas-cctv-consumer-day-show-business-scandals-accused-misinformation-copyright-infringement/"]]},
+    "2018": {t:"山寨饮品涌入农村市场", target:"山东枣庄金顺源食品有限公司等多家企业 · 「6 个纯核桃」「6 禾核桃」等山寨核桃露",
+      problem:"产品无核桃无花生，用香精 + 安赛蜜 + 阿斯巴甜勾兑（两袋白糖 670–680 元 vs 安赛蜜一袋 400 元，成本账算得清清楚楚）；包装抄袭知名品牌；消毒池、空气净化设备成摆设——「两个是假的，那两个真的也不管用」；主要销往三四线城市和农村市场。",
+      outcome:"具体处罚金额未查到。", gap:true,
+      src:[["新浪财经","https://finance.sina.cn/consume/bgt/2018-03-15/detail-ifyshfup9564948.d.html"]]},
+    "2019": {t:"脏乱辣条、「化妆」土鸡蛋", target:"「虾扯蛋」辣条（河南兰考、湖南平江工厂）· 河北、湖北等地「土鸡蛋」生产企业",
+      problem:"辣条工厂工人无口罩手套，辣条丝拖地、用手抓，尘土、抹布、电子秤与油混杂，各种添加剂防腐剂倒入机器搅拌；「土鸡蛋」用斑蝥黄添加剂加深蛋黄颜色，笼养鸡冒充土鸡蛋——「鲜土」「好土」只是商标名，国家并无「土鸡蛋」标准。",
+      outcome:"曝光后淘宝、京东下线「虾扯蛋辣条」。具体罚单未查到。", gap:true,
+      src:[["驱动之家","https://news.mydrivers.com/blog/20190315.htm"],["天天看点（英文）","https://www.laitimes.com/en/article/3h54c_3xu5h.html"]]},
+    "2020": {t:"未查到可靠来源", target:"当年晚会因疫情延期至 7 月 16 日播出",
+      problem:"网传汉堡王、海参养殖等食品类案例，本轮检索未找到可靠网页来源佐证，记为「未查到」——宁可留白，不转述未经核实的说法。",
+      outcome:"——", none:true, gap:true,
+      src:[]},
+    "2021": {t:"河北青县「瘦肉精」羊", target:"河北省青县养羊户",
+      problem:"饲养羊过程中添加瘦肉精——时隔整整十年，瘦肉精重回 3·15。",
+      outcome:"具体处罚金额未查到。", gap:true,
+      src:[["维基百科·2021 年 3·15 晚会","https://zh.wikipedia.org/wiki/2021%E5%B9%B43%C2%B715%E6%99%9A%E4%BC%9A"]]},
+    "2022": {t:"土坑酸菜、变味粉条", target:"湖南华容插旗菜业（康师傅代工）、岳阳君山雅园酱菜、坛坛俏、湖南锦瑞 · 禹州夏都三粉厂等",
+      problem:"标准化腌制池的产品用于出口，「老坛酸菜包」却用土坑收购菜：工人穿拖鞋、光脚踩酸菜，边抽烟边干活，烟头扔进酸菜；收购不检测卫生指标；雅园防腐剂夏季超量 2–10 倍，负责人称「它是有挥发性的，你今天是一个数据，半个月是另一个数据」。粉条则以木薯淀粉冒充红薯、山药淀粉（木薯每斤不到 2 元 vs 红薯每斤 4 元），晾晒场旁就是污水池和厕所。插旗菜业彭经理：「国内的产品里面有点杂质，罚一千两千，国外可能罚 10 万。」",
+      outcome:"市场监管总局要求两省市监部门立即查封曝光企业，全面下架召回涉事产品，违法采购使用者一查到底，涉嫌犯罪移送公安；华容县委县政府当晚组织调查。康师傅承认插旗是其供应商，中止资格、封存酸菜包、致歉，并披露插旗向江门/武汉/西安/新疆四家工厂供货，启动下架回收；统一否认使用土坑酸菜。沃尔玛、每日优鲜、盒马、首航超市连夜下架老坛酸菜方便面。",
+      src:[["天天看点（爱范儿）","https://www.laitimes.com/article/3gngu_3xci2.html"],["增长黑客","https://www.growthhk.cn/cgo/model/171201.html"]]},
+    "2023": {t:"泰国香米，香精勾兑", target:"安徽淮南寿县永良米业 · 「泰子王」二代泰国香米",
+      problem:"以香精勾兑冒充泰国香米。刘经理承认：「我们从来不做进口」「只是一个牌子，跟泰国米没有关系」。",
+      outcome:"具体处罚结果未查到。", gap:true,
+      src:[["扬子晚报 2023-03-16 A6 版","http://doss.xhby.net/zpaper/yzwb/pc/att/202303/16/5a948449-ac7b-4fba-845e-2e9916b3fb83.pdf"]]},
+    "2024": {t:"槽头肉梅菜扣肉、听花酒", target:"安徽阜阳个别企业（预制菜）· 听花酒",
+      problem:"用未经严格处理的槽头肉（俗称淋巴肉，品质低劣）制作梅菜扣肉预制菜；听花酒标准装 5860 元、精品装 58600 元，宣称增强免疫、改善睡眠、抗衰老，所谓国际专利仅为「申请」未获批，「凉味剂」实为薄荷提取物。",
+      outcome:"槽头肉舆情达 323646 篇文章、舆情指数 98.77，电商与直播平台下架相关预制菜；听花酒官方微信被封、电商下架。涉事企业具体罚单未查到。", gap:true,
+      src:[["天天看点（英文）","https://www.laitimes.com/en/article/6hj4u_6xvfk.html"],["The World of Chinese","https://www.theworldofchinese.com/2024/03/shocking-scandals-revealed-at-chinas-consumer-rights-gala/"]]},
+    "2025": {t:"泡药虾仁", target:"部分冻虾仁生产企业（具体名单未查到）",
+      problem:"磷酸盐（保水剂）含量高达 3%，国标限量 0.5%（5g/kg），超标 6 倍；500 克包装虾仁解冻后仅剩 150 克实际虾肉；长期过量摄入可致消化问题、钙流失、心血管疾病。卧底工人称自己绝不吃自家生产的虾仁；3·15 记者为取证冒充采购员试吃大量样品，有人呕吐不止。",
+      outcome:"具体处罚结果未查到。", gap:true,
+      src:[["The World of Chinese","https://www.theworldofchinese.com/2025/03/mega-scandals-from-chinas-annual-consumer-rights-festival-in-2025/"],["Trending on Weibo","https://www.trendingonweibo.com/hotwords/journalists-risk-health-expose-food-industry-scandals/"]]},
+    "2026": {t:"双氧水漂白鸡爪", target:"四川蜀福香食品 · 成都明扬食品 · 重庆曾巧食品（第 36 届 3·15，主题「放心消费 品质生活」）",
+      problem:"车间无健康证、体检、消毒，臭气污水遍地，鸡爪堆放潮湿地面，被扫帚铁锹压放、踩踏后捡回继续用；关键工序用双氧水（过氧化氢）漂白——曾巧食品使用 35% 含量过氧化氢，生产商为眉山金山制药；成品 500 克售价低至 15 元。国家规定鸡爪加工不能用双氧水：破坏蛋白质营养成分，长期食用可致口腔黏膜损伤、肝肾功能损害，超剂量危及生命。同场另有外泌体「神药」、增高骗局、私域营销围猎老人等曝光。",
+      outcome:"3 月初记者已将素材移交市场监管总局，总局调动多地执法力量突击检查；2026 年 3 月 20 日总局一季度发布会通报：组织专案组突击执法，现场查封过氧化氢 27 桶、鸡爪制品 551 箱；对相关地方政府和市场监管部门约谈、挂牌督办——「问题不查清不放过，整改不到位不放过」。",
+      src:[["东方财富","https://fund.eastmoney.com/a/202603153672453950.html"],["21 世纪经济报道（转载）","https://fsxa9cd9b.apostaorbihouse.com/travel-complaints/20261018/453397278.htm"]]}
+  };
+
+  var grid = document.getElementById('yearGrid');
+  var panel = document.getElementById('yearPanel');
+  var years = Object.keys(DATA);
+
+  function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+  function render(year){
+    var d = DATA[year];
+    var html = '<div class="yp-year">3·15 晚会 · ' + year + '</div>'
+      + '<h3>' + esc(d.t) + '</h3>'
+      + '<div class="yp-target">' + esc(d.target) + '</div>'
+      + '<div class="yp-cols">'
+      + '<div><h4>问题性质</h4><p>' + esc(d.problem) + '</p></div>'
+      + '<div><h4>后续处理</h4><p>' + esc(d.outcome) + '</p></div>'
+      + '</div>';
+    if (d.gap && !d.none) html += '<div class="gap-note">数据缺口：该案的具体处罚金额 / 结果，本轮调研未查到可靠来源。</div>';
+    if (d.src && d.src.length){
+      html += '<div class="src-line">来源：' + d.src.map(function(s){return '<a href="' + s[1] + '">' + esc(s[0]) + '</a>';}).join(' · ') + '</div>';
+    }
+    panel.innerHTML = html;
+    var btns = grid.querySelectorAll('.year-btn');
+    for (var i=0;i<btns.length;i++){
+      btns[i].classList.toggle('active', btns[i].getAttribute('data-year') === year);
+      btns[i].setAttribute('aria-selected', btns[i].getAttribute('data-year') === year ? 'true' : 'false');
+    }
+  }
+
+  years.forEach(function(y){
+    var b = document.createElement('button');
+    b.className = 'year-btn' + (DATA[y].none ? ' none' : '');
+    b.setAttribute('data-year', y);
+    b.setAttribute('role', 'tab');
+    b.innerHTML = y + '<span class="dot"></span>';
+    b.addEventListener('click', function(){ render(y); });
+    grid.appendChild(b);
+  });
+  render('2022');
+
+  // roots filter
+  var fbtns = document.querySelectorAll('.filter-btn');
+  var items = document.querySelectorAll('.root-item');
+  fbtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      fbtns.forEach(function(x){x.classList.remove('active');});
+      btn.classList.add('active');
+      var f = btn.getAttribute('data-filter');
+      items.forEach(function(it){
+        it.classList.toggle('hidden', f !== 'all' && it.getAttribute('data-kind') !== f);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
